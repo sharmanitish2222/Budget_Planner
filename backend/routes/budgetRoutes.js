@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-// Temporary in-memory storage
-let budgets = [];
+let budgets = []; // In-memory data
 
-// POST - Add budget
+// Add budget
 router.post('/', (req, res) => {
     const budget = {
         id: budgets.length + 1,
@@ -18,7 +17,7 @@ router.post('/', (req, res) => {
     res.status(201).json(budget);
 });
 
-// GET - Get budgets by userId
+// Get budgets by userId
 router.get('/:userId', (req, res) => {
     const result = budgets.filter(b => b.userId === req.params.userId);
     res.json(result);
