@@ -64,3 +64,50 @@ async function loadExpenses(userId) {
     });
 }
 
+async function showSummary() {
+    const userId = document.getElementById('userId').value || document.getElementById('expUserId').value;
+
+    if (!userId) {
+        alert("Please enter User ID first.");
+        return;
+    }
+
+    // Fetch budgets & expenses
+    const [budgetsRes, expensesRes] = await Promise.all([
+        fetch(`http://localhost:5000/api/budgets/${userId}`),
+        fetch(`http://localhost:5000/api/expenses/${userId}`)
+    ]);
+
+    const budgets = await budgetsRes.json();
+    const expenses = await expensesRes.json();
+
+    // Calculate summary by category
+    const summary = budgets.map(b => {
+        const spent = expenses
+            .filter(e => e.category === b.category)
+            .reduce((sum, e) => sum + e.amount, 0);
+
+        return {
+            category: b.category,
+            budget: b.amount,
+            spent,
+            remaining: b.amount - spent
+        };
+    });
+
+    // Render the table
+    const tbody = document.querySelector('#summaryTable tbody');
+    tbody.innerHTML = ''; // Clear previous
+
+    summary.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${row.category}</td>
+          <td>₹${row.budget}</td>
+          <td>₹${row.spent}</td>
+          <td>₹${row.remaining}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
