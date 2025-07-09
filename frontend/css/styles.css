@@ -18,7 +18,7 @@ h1, h2, h3 {
     color: #2c3e50;
     text-align: center;
 }
-/* Welcome page styling */
+
 .welcome-page {
     display: flex;
     justify-content: center;
@@ -116,6 +116,9 @@ form button:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
 }
+.darkModeToggle{
+    font-family: 'Courier New', Courier, monospace;
+}
 
 body.dark-mode {
     --bg-color: #1e1e1e;
@@ -123,8 +126,30 @@ body.dark-mode {
     --card-bg: #2b2b2b;
     --accent-color: #8ab4f8;
 }
+body.dark-mode h2{
+    color: darkgray;
+}
+body.dark-mode h3{
+    color:darkgrey
+}
 
 body.dark-mode button {
     background-color: var(--accent-color);
-    color: #000;
+    color:#2980b9 ;
 }
+#expenseContainer {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+}
+#expenseContainer div {
+    background-color: var(--card-bg);
+    margin-top: 10px;
+    padding: 12px;
+    border-left: 5px solid #e67e22;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: var(--text-color);
+}
+

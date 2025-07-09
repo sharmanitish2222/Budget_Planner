@@ -8,6 +8,10 @@ app.use(express.json());
 const budgetRoutes = require('./routes/budgetRoutes');
 app.use('/api/budgets', budgetRoutes);
 
+const expenseRoutes = require('./routes/expenseRoutes');
+app.use('/api/expenses', expenseRoutes);
+    
+
 app.listen(5000, () => {
     console.log('Server running on http://localhost:5000');
 });

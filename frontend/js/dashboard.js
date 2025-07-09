@@ -33,3 +33,34 @@ async function loadBudgets(userId) {
         container.appendChild(div);
     });
 }
+
+document.getElementById('expenseForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const userId = document.getElementById('expUserId').value;
+    const category = document.getElementById('expCategory').value;
+    const amount = document.getElementById('expAmount').value;
+    const date = document.getElementById('expDate').value;
+
+    await fetch('http://localhost:5000/api/expenses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, category, amount, date })
+    });
+
+    loadExpenses(userId);
+});
+
+async function loadExpenses(userId) {
+    const res = await fetch(`http://localhost:5000/api/expenses/${userId}`);
+    const data = await res.json();
+
+    const container = document.getElementById('expenseContainer');
+    container.innerHTML = '';
+    data.forEach(exp => {
+        const div = document.createElement('div');
+        div.textContent = `${exp.category}: ₹${exp.amount} on ${exp.date}`;
+        container.appendChild(div);
+    });
+}
+
