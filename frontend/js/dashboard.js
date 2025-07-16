@@ -1,4 +1,4 @@
-// Toggle Dark Mode
+
 document.getElementById('darkModeToggle').addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
 });
@@ -11,17 +11,17 @@ document.getElementById('budgetForm').addEventListener('submit', async function 
     const amount = document.getElementById('amount').value;
     const period = document.getElementById('period').value;
 
-    // POST request to add budget
+   
     await fetch('http://localhost:5000/api/budgets', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, category, amount, period })
     });
 
-    loadBudgets(userId); // reload after adding
+    loadBudgets(userId); 
 });
 
-// Load budgets
+
 async function loadBudgets(userId) {
     const res = await fetch(`http://localhost:5000/api/budgets/${userId}`);
     const data = await res.json();
@@ -72,7 +72,7 @@ async function showSummary() {
         return;
     }
 
-    // Fetch budgets & expenses
+ 
     const [budgetsRes, expensesRes] = await Promise.all([
         fetch(`http://localhost:5000/api/budgets/${userId}`),
         fetch(`http://localhost:5000/api/expenses/${userId}`)
@@ -81,7 +81,7 @@ async function showSummary() {
     const budgets = await budgetsRes.json();
     const expenses = await expensesRes.json();
 
-    // Calculate summary by category
+
     const summary = budgets.map(b => {
         const spent = expenses
             .filter(e => e.category === b.category)
@@ -95,9 +95,9 @@ async function showSummary() {
         };
     });
 
-    // Render the table
+
     const tbody = document.querySelector('#summaryTable tbody');
-    tbody.innerHTML = ''; // Clear previous
+    tbody.innerHTML = '';
 
     summary.forEach(row => {
         const tr = document.createElement('tr');

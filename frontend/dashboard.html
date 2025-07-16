@@ -5,57 +5,93 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <h2>Dashboard</h2>
-    <button id="darkModeToggle">🌙 Dark Mode</button>
+    <div id="vanta-bg">
+      <h2>Dashboard</h2>
+      <button id="darkModeToggle">🌙 Dark Mode</button>
 
-    <form id="budgetForm">
-      <input type="text" placeholder="User ID" id="userId" required /><br />
-      <input type="text" placeholder="Category" id="category" required /><br />
-      <input type="number" placeholder="Amount" id="amount" required /><br />
-      <input
-        type="text"
-        placeholder="Period (monthly/weekly)"
-        id="period"
-        required
-      /><br />
-      <button type="submit">Add Budget</button>
-    </form>
+      <form id="budgetForm">
+        <input type="text" placeholder="User ID" id="userId" required /><br />
+        <input
+          type="text"
+          placeholder="Category"
+          id="category"
+          required
+        /><br />
+        <input type="number" placeholder="Amount" id="amount" required /><br />
+        <input
+          type="text"
+          placeholder="Period (monthly/weekly)"
+          id="period"
+          required
+        /><br />
+        <button class="glow-btn" type="submit">Add Budget</button>
+      </form>
 
-    <h3>Budgets:</h3>
-    <div id="budgetContainer"></div>
-    <hr>
-<h2>Expenses</h2>
+      <h3>Budgets:</h3>
+      <div id="budgetContainer"></div>
+      <hr />
+      <h2>Expenses</h2>
 
-<form id="expenseForm">
-  <input type="text" id="expUserId" placeholder="User ID" required><br>
-  <input type="text" id="expCategory" placeholder="Category" required><br>
-  <input type="number" id="expAmount" placeholder="Amount" required><br>
-  <input type="date" id="expDate" required><br>
-  <button type="submit">Add Expense</button>
-</form>
+      <form id="expenseForm">
+        <input
+          type="text"
+          id="expUserId"
+          placeholder="User ID"
+          required
+        /><br />
+        <input
+          type="text"
+          id="expCategory"
+          placeholder="Category"
+          required
+        /><br />
+        <input
+          type="number"
+          id="expAmount"
+          placeholder="Amount"
+          required
+        /><br />
+        <input type="date" id="expDate" required /><br />
+        <button class="glow-btn" type="submit">Add Expense</button>
+      </form>
 
-<h3>Expenses:</h3>
-<div id="expenseContainer"></div>
+      <h3>Expenses:</h3>
+      <div id="expenseContainer"></div>
 
-<hr>
-<h2>Budget Summary</h2>
-<button onclick="showSummary()">Show Summary</button>
+      <hr />
+      <h2>Budget Summary</h2>
+      <button class="glow-btn" onclick="showSummary()">Show Summary</button>
 
-<table id="summaryTable">
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Budget</th>
-      <th>Spent</th>
-      <th>Remaining</th>
-    </tr>
-  </thead>
-  <tbody>
-
-  </tbody>
-</table>
-
+      <table id="summaryTable">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Budget</th>
+            <th>Spent</th>
+            <th>Remaining</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
 
     <script src="js/dashboard.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script>
+      VANTA.NET({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0xff004b,
+        backgroundColor: 0x111111,
+      });
+    </script>
   </body>
 </html>
